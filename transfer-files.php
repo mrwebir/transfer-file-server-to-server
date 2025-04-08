@@ -1,23 +1,21 @@
 <?php
-// URL فایل زیپ در هاست مبدأ
-$sourceUrl = 'http://source-host.com/path/to/file.zip';
+// URL of the zip file on the source host
+$sourceUrl = 'https://source-host.com/path/to/file.zip';
 
-// مسیر ذخیره‌سازی فایل در هاست مقصد داخل پوشه public_html
+// The path to save the file on the destination host inside the public_html folder
 $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/file.zip'; // public_html/file.zip
 
-// 1. دانلود فایل ZIP از هاست مبدأ
 $fileContent = file_get_contents($sourceUrl);
 
 if ($fileContent === false) {
-    die('خطا در دانلود فایل از هاست مبدأ.');
+    die('Error downloading file from source host');
 }
 
-// 2. ذخیره‌سازی فایل ZIP در پوشه public_html
 $saveFile = file_put_contents($destinationPath, $fileContent);
 
 if ($saveFile === false) {
-    die('خطا در ذخیره‌سازی فایل در پوشه public_html.');
+    die('Error saving file to public_html folder');
 }
 
-echo 'فایل با موفقیت در پوشه public_html دانلود و ذخیره شد.';
+echo 'The file was successfully downloaded and saved in the public_html folder';
 ?>
